@@ -1,0 +1,130 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Key Benefits of Cypress
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. AUTO SYNCronization (timeouts, intelligence waits, hnadle hiddent elements)
+2. MOCKING server response.
+3. Takes SNAPSHOTS as test runs - debug is easy.
+4. FAST, CONSISTENT, RELIABLE (due to architecture design)
+5. VIDEOS of test runs
+
+6. NPM Module
+7. JAVASCRIPT based.
+8. JQUERY inherantance
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Architecture:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cypress command  >  browser driver (command gets injected to it) > actual browser
+				 <												 <
+It is the browser that executes the test code thus give liberty to have reliable sync and mocking of responses
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Installation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. install nodejs
+2. setup env variabl [NODE_HOME : path of node install c progroamifles node]
+3. install vscode
+4. Setup node project
+	> npm -i init (this will create package.json file its like a main central file where all settings and DEPENDENCY gets added)
+	> npm install cypress --save-dev (save dev is to update the dependency in package.json file)
+	> npx cypress open (to open cypress testrunner and it will create all required folders of cypress)
+	OR node_modules/.bin/cypress open
+	> npx cypress run (to run headless and video gets captured)
+	OR node_modules/.bin/cypress run
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Cypress BASICS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. Folder structure
+	> fixture : stores TEST DATA
+	> integration : stores TEST CASES (not in cypress 12)
+	> plugins : not in cypress 12
+	> support : stores METHODS /code
+	> cypress-config.js (previsouly called as cypress.json) - project config file at global level
+
+
+2. Cypress only support CSSSelector as locator
+
+3. Cypress as its based on JS its ASYNCHRONOUS
+	> that means commands can run async i.e it wont run one after another.
+
+	cy.get('.products').find('.product').each(($e1,index, $list) => {
+            if($e1.find('.product-name').text().includes('Cashew')){
+                cy.wrap($e1).find("button").click()
+                cy.log('product selected successfully')
+            }
+
+        })
+
+4. In above code, $e1 is a promise that needs to be resolved first.
+	> PROMISE can be rejected, pending or resolved. (https://www.w3schools.com/js/js_promise.asp)
+	> Promise.then()
+
+ 
+5. Cypress commands are also async but cypress have internally handled it.
+	> But if you use any command which is not part of Cypress then we have to exceptionally do the promise resolving 
+	> for eg: .text(), variable declration 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+BASIC CYPRESS COMMANDS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. test.js
+	> cy.visit() (to launch url)
+	> cy.get() (for any locator)
+	> cy.get().find() (to filter the dom first with specific locator and then find another locator within)
+	> cy.get().each(($e1,index,$list) => {}) (using each we can traverse through multiple locators and perform setup based on logic)
+	> cy.contains('<text value>')
+	
+
+2. cy.get().check.should('be.checked') - for CHECKBOX and RADIOBUTTON
+	cy.get().select('<value text>') - for STATIC DROPDOWN
+
+3. should has lots of commands for 'be' and 'have' methods for assertion
+	> 'be' is for behaviour
+	> 'have' is for property
+	
+4. ALERTS gets handled automatically as part of EVENTS
+
+5. cy.go() - for browser navigation
+
+6. CHILD TABS HANDLING
+	> remove TARGET attribute first using cy.get.invoke('removeAttr','target')
+	> link will open in same tab and you can handle the steps 
+	> use cy.go('back') to go back to main page.
+
+7. Webtable - using .each(($e1,index,$list) => {}) AND .next()
+
+8. MouseOver -
+	> using .click({force:true}) //to click on hidden element
+	OR using jquery method - .invoke('show')
+
+9. 
+
+	
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
