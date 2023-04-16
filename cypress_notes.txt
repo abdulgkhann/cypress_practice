@@ -103,10 +103,31 @@ BASIC CYPRESS COMMANDS
 	> using .click({force:true}) //to click on hidden element
 	OR using jquery method - .invoke('show')
 
-9. 
+9. cy.pause() or cy.debug() (acts like breakpoint)
 
+10. Page Object Design with Cypress
+	> create page.js under integration folder in seperate pageojbect folder
+	> this js is basically a class, add method in it and export it
+	> import it in main spec.js and define object and use the method defined under class.
+	> 
+
+11. TEST DATA
+	> fixture folder is used > example.js file will contain all the test data in json format
+	> using cy.fixture in spec.js (under before) declar the data and start using it.
+	eg:
+		cy.fixture('example').then(function(data){
+			this.data = data
+		}
+		using it as:  this.data.name
 	
+12. use.then() to resolve promise
+	eg: using text()
+	cy.get().then(function(element){
+		eleemnt.text()
+		expect (chai assertions)
+	})
 
+13. 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
