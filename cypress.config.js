@@ -17,12 +17,14 @@ async function setupNodeEvents(on, config) {
 module.exports = defineConfig({
   projectId: "i7udd9",
   defaultCommandTimeout: 6000,
+  video:false,
   env:{
     url:'https://rahulshettyacademy.com/'
   },
 
   e2e: {
     setupNodeEvents,
-    specPattern: 'cypress/integration/examples/BDD/*.feature'
+    specPattern: 'cypress/integration/BDD/*.feature'
+    //specPattern: 'cypress/integration/examples/*.js'
   },
 });

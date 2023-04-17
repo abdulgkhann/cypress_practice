@@ -9,10 +9,20 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^12.9.0"
+    "cypress": "^12.9.0",
+    "multiple-cucumber-html-reporter": "^3.3.0"
   },
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^16.0.3",
     "@cypress/browserify-preprocessor": "^3.0.2"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": [
+      "cypress/integration/stepDefinitions/*.{js,ts}"
+    ],
+    "json": {
+      "enabled": true,
+      "output": "cypress/cypressReports/results.json"
+    }
   }
 }

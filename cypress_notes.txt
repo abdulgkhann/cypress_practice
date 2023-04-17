@@ -127,14 +127,53 @@ BASIC CYPRESS COMMANDS
 		expect (chai assertions)
 	})
 
-13. 
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+JENKINS (local)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. Download generica java WAR file for jenkins
+
+2. Run command to launch jenkins
+	> java -jar jenkins.war --httpPort=9090 --enable-future-java
+
+3. Add new project, do the setup
+
+4. Add new JOB
+	> generic
+	> advanced > local directory (give path where cypress project is kept)
+	> select BUILD with PARAMETER (give spec/feature file names as choice)
+	> Add build steps > Execute with SHELL
+		> give the npx command here
+		for eg: npx cypress run --spec cypress/integration/BDD/${specName}.feature
+		
+		
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using CUCUMBER
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. Install cypress cucumber package (badeball git)
+2. Follow the doc > examples > browserify cjs steps
+3. Install VSCODE Cucumber extension
+4. Write feature file under integration folder
+5. Write steps.js under integration folder (update pacakge.json with stepdef path if using custompath)
+6. Update cypress.config.js - spec pattern path.
+
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+HTML Reports
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+message > json file > html file
+1. create cypress json result
+	> refer badeball doc > json result page
+2. cypress json formatter
+	> get the exe and place it at path of project
+
+3. multi cucumber report
+	> go to npm package and install
+
+Basically message to json file creation happens auto - but json file to html we have to run cucumber-report.js (template)
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
