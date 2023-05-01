@@ -175,13 +175,63 @@ Basically message to json file creation happens auto - but json file to html we 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+API Cypress Request
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cypress.request can manipulate the API calls
+	- we can pass cy.request(httpmethod,url,{body}).then and get the properties from response
+	- for eg fetchin token value and using it while launching site (setting token explicitly)
+	-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Cypress SQL SErver AZURE request
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Azure account
+email: abdulgk93@gmail.com
+pwd: Agk18hasin@
+
+	- SQL SErver
+		DB: myPracticeDB
+		Server: mypracticedbserver
+		Server login:
+			user: abdulgkhan
+			pwd: Agk18hasin@
+
+Once above setup is done.
+Install package cypress-sql-server
+follow the instruction on that page
+ 1. in cypress.config.js file under setupNodeEvents
+	 -	define config.db variable with all db details
+	 - add tasks line for sq
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+READING EXCEL FILE and Cypress TASKS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. install convert-excel-to-json (this converts the given excel file to json format)
+2. follow the instruction on the npm page for above package
+		 const result = excelToJson({
+        source: fs.readFileSync(filePath)
+		});
+this line need to be added in a function under on tasks
+so that we can use that task to perform the action. as this is node library
+
+3. so in cypress.config.js under setupNodeEvents func add below code
+		on('task',{
+			excelToJsonTask(filePath){
+			const result = excelToJson({
+			source: fs.readFileSync(filePath)
+			});
+		return result;
+		}
+	});
+	
+4. to use this task in main spec file
+		cy.task('excelToJsonTask',excelFilePath).then((excelFileContent)=>{
+            cy.log(excelFileContent)
+            expect(expectedProductName).to.equal(excelFileContent.data[1].B)
+        }) 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

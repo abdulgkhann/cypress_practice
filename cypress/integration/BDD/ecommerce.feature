@@ -11,5 +11,7 @@ Feature: F_e2e ecommerce validation
   Scenario: Fill form details to shop
     Given I visit ecommerce site
     When I fill the form details
+    |name|gender|
+    |abdul gaffar|Female|
     Then I validate form details
     Then I select Shop page

@@ -1,5 +1,5 @@
 /// <reference types="Cypress" />
-const { Given, When, Then, attach } = require("@badeball/cypress-cucumber-preprocessor");
+const { Given, When, Then, attach, DataTable } = require("@badeball/cypress-cucumber-preprocessor");
 import HomePage from "../pageObjects/HomePage";
 import ShopPage from "../pageObjects/ShopPage";
 
@@ -48,9 +48,11 @@ Then('I ordered product sucessfully',()=>{
     })
 })
 
-When('I fill the form details',()=>{
-    homePage.getEditBox().type(data.name)
-    homePage.getGender().select(data.gender)
+When('I fill the form details',(dataTable)=>{
+    homePage.getEditBox().type(dataTable.rawTable[1][0])
+    homePage.getGender().select(dataTable.rawTable[1][1])
+    //homePage.getEditBox().type(data.name)
+    //homePage.getGender().select(data.gender)
 })
 
 Then('I validate form details',()=>{
